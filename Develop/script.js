@@ -1,10 +1,13 @@
 // Assignment code here
+
 randomCriteria = {
   lowercase: getLowercase,
   uppercase: getUppercase,
   numeric: getNumeric,
   symbol: getSymbol,
 }
+
+passCriteria = ""
 
 function getLowercase() {
   return String.fromCharCode(Math.floor(Math.random() * 26 + 97))
@@ -33,7 +36,7 @@ function writePassword() {
       window.alert("Password must be between 8 and 128 characters")
       return ""
     }
-    else { 
+    if (passLength >= 8 && passLength <= 128) { 
         var upperCheck = confirm("Do you want to have Uppercase Letters in your password")
       
         var lowerCheck = confirm("Do you want to have Lowercase Letters in your password")
@@ -44,27 +47,40 @@ function writePassword() {
         
         console.log(upperCheck,lowerCheck, symbolCheck,numericCheck)
       
-        if (upperCheck === false && lowerCheck === false && symbolCheck === false && numericCheck === false){
+    if (upperCheck === false && lowerCheck === false && symbolCheck === false && numericCheck === false){
         alert("Please select at least one password criteria")
         return ""
         }
-
-//START NEW CODE HERE TODD NOTE
-
-
+    if (upperCheck === true || lowerCheck === true || symbolCheck === true || numericCheck === true){
+      function passCriteria() {
+        if (upperCheck = true){
+          passCriteria = getUppercase
+        }
+        if (lowerCheck = true){
+        passCriteria = passCriteria + getLowercase
+        }
+        if (symbolCheck = true){
+          passCriteria = passCriteria + getSymbol
+        }
+        if (numericCheck = true) {
+          passCriteria = passCriteria + getNumeric      
+        }
+      //START NEW CODE HERE TODD NOTE
         else {
           var generatePassword = function(){
             console.log(passLength)
           
-            for (var i=0; i < passLength.length; i++){
+            for (var i=0; i < passLength; i++){
+              var randomNumber = Math.floor(math.random()*passLength);
+              password += passCriteria.substring(randomNumber,randomNumber + 1);
+            }
             
-            passwordText = "Test"
-            passwordText.value = password;
-            var passwordText = document.querySelector("#password");
+          }  
         }          
       }
     }
   }
 } 
+
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
